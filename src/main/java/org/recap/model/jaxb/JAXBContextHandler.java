@@ -1,7 +1,7 @@
 package org.recap.model.jaxb;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
 import java.util.HashMap;
 import java.util.Map;
 

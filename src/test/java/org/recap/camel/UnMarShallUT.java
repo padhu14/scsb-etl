@@ -11,7 +11,7 @@ import org.recap.BaseTestCase;
 import org.recap.model.jaxb.BibRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBContext;
 import java.io.File;
 import java.net.URL;
 
