@@ -1,5 +1,11 @@
+def configuredRepoUrl = System.getenv('MAVEN_REPOSITORY_URL') ?: findProperty('mavenRepositoryUrl')
+
 buildscript {
     repositories {
+        def pluginRepoUrl = System.getenv('MAVEN_REPOSITORY_URL')
+        if (pluginRepoUrl) {
+            maven { url pluginRepoUrl }
+        }
         mavenCentral()
     }
     dependencies {
@@ -24,6 +30,9 @@ java {
 }
 
 repositories {
+    if (configuredRepoUrl) {
+        maven { url configuredRepoUrl }
+    }
     mavenCentral()
 }
 
