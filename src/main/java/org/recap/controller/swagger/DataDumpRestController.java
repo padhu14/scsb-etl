@@ -1,12 +1,9 @@
 package org.recap.controller.swagger;
 
-import io.swagger.annotations.*;
 import org.recap.RecapConstants;
 import org.recap.camel.dynamicrouter.DynamicRouteBuilder;
 import org.recap.model.export.DataDumpRequest;
 import org.recap.service.preprocessor.DataDumpExportService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/dataDump")
-@Api(value="dataDump", description="Export data dump", position = 1)
 public class DataDumpRestController {
 
 
@@ -58,19 +54,16 @@ public class DataDumpRestController {
      * @return string
      */
     @RequestMapping(value="/exportDataDump", method = RequestMethod.GET)
-    @ApiOperation(value = "exportDataDump",
-            notes = "Export datadumps to institutions", nickname = "exportDataDump", position = 0)
-    @ApiResponses(value = {@ApiResponse(code = 200, message = RecapConstants.DATADUMP_PROCESS_STARTED)})
     @ResponseBody
-    public String exportDataDump(@ApiParam(value = "Code of institutions whose shared collection updates are requested. Use PUL for Princeton, CUL for Columbia and NYPL for NYPL." , required = true, name = "institutionCodes") @RequestParam String institutionCodes,
-                                         @ApiParam(value = "Code of insitituion who is requesting. Use PUL for Princeton, CUL for Columbia and NYPL for NYPL. ",required=true, name = "requestingInstitutionCode") @RequestParam String requestingInstitutionCode,
-                                         @ApiParam(value = "Type of export - Incremental (use 1) or Deleted (use 2)" , required = true , name = "fetchType") @RequestParam String fetchType,
-                                         @ApiParam(value = "Type of format - Marc xml (use 0) or SCSB xml (use 1), for deleted records only json format (use 2)",required=true, name = "outputFormat") @RequestParam String outputFormat,
-                                         @ApiParam(value = "Get updates to middleware collection since the date provided. Default will be updates since the previous day. Date format will be a string (yyyy-MM-dd HH:mm)", name = "date") @RequestParam(required=false) String date,
-                                         @ApiParam(value = "Get updates to middleware collection until the date provided. Default will be updates since the previous day. Date format will be a string (yyyy-MM-dd HH:mm)", name = "toDate") @RequestParam(required=false) String toDate,
-                                         @ApiParam(value = "Collection group id will get the relevant info based on the id provided. Default will get both shared and open information - Shared (use 1), Open (use 2), Both (use 1,2)", name = "collectionGroupIds") @RequestParam(required=false) String collectionGroupIds,
-                                         @ApiParam(value = "Type of transmission - FTP (use 0), HTTP Response (use 1) this parameter is not considered for full dump. Default will be ftp ", name = "transmissionType")@RequestParam(required=false) String transmissionType,
-                                         @ApiParam(value = "Email address to whom we need to send an email" , name = "emailToAddress")@RequestParam(required=false) String emailToAddress
+    public String exportDataDump(@RequestParam String institutionCodes,
+                                         @RequestParam String requestingInstitutionCode,
+                                         @RequestParam String fetchType,
+                                         @RequestParam String outputFormat,
+                                         @RequestParam(required=false) String date,
+                                         @RequestParam(required=false) String toDate,
+                                         @RequestParam(required=false) String collectionGroupIds,
+                                         @RequestParam(required=false) String transmissionType,
+                                         @RequestParam(required=false) String emailToAddress
     ){
         RecapConstants.EXPORT_SCHEDULER_CALL = false;
         DataDumpRequest dataDumpRequest = new DataDumpRequest();

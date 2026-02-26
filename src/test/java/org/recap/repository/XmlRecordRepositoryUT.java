@@ -22,7 +22,7 @@ public class XmlRecordRepositoryUT extends BaseTestCase {
 
     @Test
     public void fetchRecords() throws Exception {
-        Page<XmlRecordEntity> xmlRecordEntities = xmlRecordRepository.findAll(new PageRequest(0, 10));
+        Page<XmlRecordEntity> xmlRecordEntities = xmlRecordRepository.findAll(PageRequest.of(0, 10));
         assertNotNull(xmlRecordEntities);
     }
 

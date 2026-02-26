@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.apache.commons.collections.CollectionUtils;
 
-import javax.xml.bind.Marshaller;
+import jakarta.xml.bind.Marshaller;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.util.*;
